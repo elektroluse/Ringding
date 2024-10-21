@@ -26,7 +26,7 @@ public class Ringding {
         return lookupList(phoneNumbers);
     }
 
-    private List<LookupRecord> lookupList(List<String> listOfNums){
+    public List<LookupRecord> lookupList(List<String> listOfNums){
         List<LookupRecord> results = new ArrayList<>();
         for(String s : listOfNums){
             results.add(lookup(s));
