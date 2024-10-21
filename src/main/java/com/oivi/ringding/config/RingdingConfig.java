@@ -1,8 +1,8 @@
 package com.oivi.ringding.config;
 
-import com.oivi.ringding.lib.GulesiderScraper;
-import com.oivi.ringding.lib.Ringding;
-import com.oivi.ringding.lib.Scraper;
+import com.oivi.ringding.services.impl.GulesiderScraper;
+import com.oivi.ringding.services.impl.Ringding;
+import com.oivi.ringding.services.Scraper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

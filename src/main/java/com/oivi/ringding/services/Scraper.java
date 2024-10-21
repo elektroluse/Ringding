@@ -1,4 +1,4 @@
-package com.oivi.ringding.lib;
+package com.oivi.ringding.services;
 
 public interface Scraper {
 

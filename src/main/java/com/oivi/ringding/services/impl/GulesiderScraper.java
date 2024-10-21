@@ -1,7 +1,8 @@
-package com.oivi.ringding.lib;
+package com.oivi.ringding.services.impl;
 
+import com.oivi.ringding.services.LookupRecord;
+import com.oivi.ringding.services.Scraper;
 import org.jsoup.Jsoup;
-import org.jsoup.helper.*;
 import org.jsoup.nodes.*;
 import org.jsoup.select.*;
 

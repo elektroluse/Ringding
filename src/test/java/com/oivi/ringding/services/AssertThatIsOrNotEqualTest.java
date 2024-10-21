@@ -1,4 +1,4 @@
-package com.oivi.ringding.lib;
+package com.oivi.ringding.services;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
