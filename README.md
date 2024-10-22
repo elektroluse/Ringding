@@ -6,7 +6,8 @@
 ## Endpoints implemented and tested
 - [x] `GET : api/lookup/{number}`
 - [x] `POST : api/lookup/list`
-- [] `POST : api/upload` 
+- [ ] `POST : api/lookup/upload`
+  - Implemented and working but lacks testcase and needs refactor
 
 
 ## TODO
