@@ -1,4 +1,4 @@
-package com.oivi.ringding.api.controllers;
+package com.oivi.ringding.controllers;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

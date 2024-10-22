@@ -3,6 +3,7 @@ package com.oivi.ringding.services.impl;
 
 import com.oivi.ringding.services.LookupRecord;
 import com.oivi.ringding.services.Scraper;
+import org.springframework.core.io.Resource;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -37,10 +38,32 @@ public class Ringding {
     private List<String> fileToList(File f){
 
         BufferedReader br = openABufferedReader(f);
-        List<String> results = br.lines().toList();
+        List<String> result = br.lines().toList();
         closeBufferedReader(br);
 
-        return results;
+        return result;
+    }
+    public List<LookupRecord> lookupInputStream(InputStream is){
+        BufferedReader br = openStreamBr(is);
+        return lookupList(bufferedReaderToList(br));
+    }
+
+    public List<String> inputStreamToList(InputStream is){
+        BufferedReader br = openStreamBr(is);
+        return bufferedReaderToList(br);
+
+    }
+
+    public List<String> bufferedReaderToList(BufferedReader br){
+
+        List<String> result = br.lines().toList();
+        closeBufferedReader(br);
+        return result;
+    }
+
+    public List<LookupRecord> lookupFromResource(Resource resource){
+        BufferedReader br = openStreamBr(openInputStream(resource));
+        return lookupList(bufferedReaderToList(br));
     }
 
     /*
@@ -51,6 +74,16 @@ public class Ringding {
         (Consider refactoring to a util class with static methods maybe)
 
      */
+
+    private InputStream openInputStream(Resource resource){
+        InputStream inputStream;
+        try{
+            inputStream = resource.getInputStream();
+        }catch (IOException e){
+            throw new RuntimeException(e);
+        }
+        return inputStream;
+    }
     private BufferedReader openABufferedReader(File fileObj){
         BufferedReader br;
         try{
@@ -67,6 +100,16 @@ public class Ringding {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private BufferedReader openStreamBr(InputStream source){
+        BufferedReader br;
+        try{
+            br = new BufferedReader(new InputStreamReader(source));
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
+        return br;
     }
 
 }
