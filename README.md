@@ -10,6 +10,10 @@
   - Implemented and working but lacks testcase and needs refactor
 
 
+## How to run
+- `./mvnw spring-boot:run`
+  - Make API calls with Postman or write a program that sends HTTP requests to the endpoints available 
+
 ## TODO
 - Connect to postgresql db 
   - To record api calls processed OR store results (not decided)
