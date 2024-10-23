@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -78,5 +79,16 @@ public class LookupControllerEndpointTest {
 
     }
 
+    @Test
+    public void testPOSTEndpointDisallowedFileType() throws Exception {
+
+        MockMultipartFile pdfFile = new MockMultipartFile("file", "test.pdf", "application/pdf", "2342340234".getBytes());
+        mockMvc.perform(
+                MockMvcRequestBuilders.multipart("/api/lookup/upload")
+                        .file(pdfFile)
+
+
+        ).andExpect(MockMvcResultMatchers.status().isUnsupportedMediaType());
+    }
 }
 
