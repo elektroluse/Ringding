@@ -42,10 +42,8 @@ public class LookupController {
     @PostMapping(path = "/api/lookup/upload")
     public ResponseEntity<List<LookupRecord>> upload(@RequestPart("file") MultipartFile mf){
         List<LookupRecord> result = new ArrayList<LookupRecord>();
-        String filename = mf.getOriginalFilename();
         String contentType = mf.getContentType();
         Resource fileContent = mf.getResource();
-        //System.out.println(filename + " content type:   " + contentType);
         if(!contentType.equals("text/plain")){
             return new ResponseEntity<>(result, HttpStatus.UNSUPPORTED_MEDIA_TYPE);
         }
