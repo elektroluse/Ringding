@@ -90,5 +90,22 @@ public class LookupControllerEndpointTest {
 
         ).andExpect(MockMvcResultMatchers.status().isUnsupportedMediaType());
     }
+
+    @Test
+    public void testLookupFromMultipartFile() throws Exception{
+
+        String testFileContent = "92285833\n" + "48841237";
+        MockMultipartFile validTestFile = new MockMultipartFile("file", "test.txt", "text/plain", testFileContent.getBytes());
+        mockMvc.perform(
+                MockMvcRequestBuilders.multipart("/api/lookup/upload")
+                        .file(validTestFile)
+
+
+        ).andExpect(MockMvcResultMatchers.status().isOk()
+        ).andExpect(MockMvcResultMatchers.jsonPath("$[*].phoneNum").value(containsInAnyOrder("92285833","48841237"))
+        ).andExpect(MockMvcResultMatchers.jsonPath("$[*].identity").value(containsInAnyOrder("Oliver Bråten","NORSTAT AS"))
+        );
+
+    }
 }
 
