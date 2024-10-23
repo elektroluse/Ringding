@@ -7,10 +7,12 @@
 - [x] `GET : api/lookup/{number}`
 - [x] `POST : api/lookup/list`
 - [ ] `POST : api/lookup/upload`
-  - Implemented and working but lacks testcase and needs refactor
+  - Implemented and tested but needs refactor
 
 
 ## How to run
+- `git clone https://github.com/elektroluse/Ringding.git`
+- `cd Ringding`
 - `./mvnw spring-boot:run`
   - Make API calls with Postman or write a program that sends HTTP requests to the endpoints available 
 
