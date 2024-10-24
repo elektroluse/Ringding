@@ -10,6 +10,8 @@
 - [ ] `POST : api/lookup/upload`
   - Implemented and tested but needs refactor
 
+- [] `GET : api/db/{number}`
+- [] `GET : api/db/{companyname}`
 
 ## How to run
 - `git clone https://github.com/elektroluse/Ringding.git`
