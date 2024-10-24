@@ -4,14 +4,14 @@
 - Testcases written with Junit and MockMvc found under `src/test/java/.*`
 - docker-compose.yml to easily set up a db image to use with the application
 
-## Endpoints implemented and tested
+## Endpoints
 - [x] `GET : api/lookup/{number}`
 - [x] `POST : api/lookup/list`
 - [ ] `POST : api/lookup/upload`
   - Implemented and tested but needs refactor
 
-- [] `GET : api/db/{number}`
-- [] `GET : api/db/{companyname}`
+- [ ] `GET : api/db/{number}`
+- [ ] `GET : api/db/{companyname}`
 
 ## How to run
 - `git clone https://github.com/elektroluse/Ringding.git`
