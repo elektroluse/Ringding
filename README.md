@@ -20,8 +20,10 @@
 
 ## TODO
 - Connect to postgresql db 
-  - To record api calls processed OR store results (not decided)
-  - Write the sql queries using JDBC API
+  - Write new controller and endpoints that interacts with a db
+  - Register records in db, lookup in db
+  - Query for all numbers registered to a company (that is present in the db)
+  - Write sql queries using JDBC API
 - Implement sensible restrictions
   - e.g stop someone from requesting 4 billion lookups
   - Validate that input string is numeric AND follows the E. 164 international standard
