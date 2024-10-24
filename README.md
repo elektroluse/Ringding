@@ -2,6 +2,7 @@
 - Build tool : Maven
 - Scraper/HTML parser : jsoup (https://jsoup.org/)
 - Testcases written with Junit and MockMvc found under `src/test/java/.*`
+- docker-compose.yml to easily set up a db image to use with the application
 
 ## Endpoints implemented and tested
 - [x] `GET : api/lookup/{number}`
@@ -13,6 +14,7 @@
 ## How to run
 - `git clone https://github.com/elektroluse/Ringding.git`
 - `cd Ringding`
+- `docker-compose up` (Not needed YET)
 - `./mvnw spring-boot:run`
   - Make API calls with Postman or write a program that sends HTTP requests to the endpoints available 
 
