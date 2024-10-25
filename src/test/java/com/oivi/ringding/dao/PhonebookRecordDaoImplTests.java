@@ -4,6 +4,7 @@ import com.oivi.ringding.dao.impl.PhonebookRecordDaoImpl;
 import com.oivi.ringding.domain.PhonebookRecord;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -40,6 +41,16 @@ public class PhonebookRecordDaoImplTests {
         verify(jdbcTemplate).update(
                 eq("INSERT INTO phonebook (record_id,phone_num,name,is_company,created_at) VALUES (?, ?, ?, ?, ?)"),
                 eq(1L), eq("92285833"), eq("Oliver Bråten"), eq(false), eq(timestamp)
+        );
+    }
+
+    @Test
+    public void testThatFindByNumGeneratesCorrectSql(){
+        underTest.findByNum("92285833");
+        verify(jdbcTemplate).query(
+                eq("SELECT name FROM phonebook WHERE phone_num = ? LIMIT 1"),
+                ArgumentMatchers.<PhonebookRecordDaoImpl.PhonebookRowMapper>any(),
+                eq("92285833")
         );
     }
 }
