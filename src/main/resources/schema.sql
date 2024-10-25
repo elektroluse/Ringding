@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS "records";
+DROP TABLE IF EXISTS "phonebook";
 
-CREATE TABLE records
+CREATE TABLE phonebook
 (
     record_id SERIAL PRIMARY KEY,
     phone_num text,
