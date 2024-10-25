@@ -1,7 +1,7 @@
 # Springboot web API for bulk lookup of phonenumbers on (gulesider.no, tbd....)
 - Build tool : Maven
 - Scraper/HTML parser : jsoup (https://jsoup.org/)
-- Testcases written with Junit and MockMvc found under `src/test/java/.*`
+- Testcases written with Junit, MockMvc and Mockito found under `src/test/java/.*`
 - docker-compose.yml to easily set up a db image to use with the application
 
 ## Endpoints
