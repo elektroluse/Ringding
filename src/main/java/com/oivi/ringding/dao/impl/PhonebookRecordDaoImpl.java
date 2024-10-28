@@ -4,12 +4,14 @@ import com.oivi.ringding.dao.PhonebookRecordDao;
 import com.oivi.ringding.domain.PhonebookRecord;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class PhonebookRecordDaoImpl implements PhonebookRecordDao {
 
     private final JdbcTemplate jdbcTemplate;
@@ -28,7 +30,7 @@ public class PhonebookRecordDaoImpl implements PhonebookRecordDao {
     @Override
     public Optional<PhonebookRecord> findByNum(String phoneNum) {
         List<PhonebookRecord> results = jdbcTemplate.query(
-                "SELECT name FROM phonebook WHERE phone_num = ? LIMIT 1",
+                "SELECT * FROM phonebook WHERE phone_num = ? LIMIT 1",
                 new PhonebookRowMapper(), phoneNum);
         return results.stream().findFirst();
     }

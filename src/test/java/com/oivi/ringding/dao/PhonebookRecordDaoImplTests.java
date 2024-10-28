@@ -48,7 +48,7 @@ public class PhonebookRecordDaoImplTests {
     public void testThatFindByNumGeneratesCorrectSql(){
         underTest.findByNum("92285833");
         verify(jdbcTemplate).query(
-                eq("SELECT name FROM phonebook WHERE phone_num = ? LIMIT 1"),
+                eq("SELECT * FROM phonebook WHERE phone_num = ? LIMIT 1"),
                 ArgumentMatchers.<PhonebookRecordDaoImpl.PhonebookRowMapper>any(),
                 eq("92285833")
         );
