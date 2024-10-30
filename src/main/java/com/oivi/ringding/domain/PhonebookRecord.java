@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 /*
      @Data and @all/no args constructor
@@ -31,4 +33,11 @@ public class PhonebookRecord {
     private String name;
     private boolean isCompany;
     private Timestamp createdAt;
+
+    public Timestamp getCreatedAt() {
+        if(createdAt == null){
+            createdAt = Timestamp.valueOf(LocalDateTime.now().truncatedTo(ChronoUnit.MICROS));
+        }
+        return createdAt;
+    }
 }

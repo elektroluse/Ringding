@@ -22,8 +22,8 @@ public class PhonebookRecordDaoImpl implements PhonebookRecordDao {
 
     @Override
     public void create(PhonebookRecord pr) {
-        jdbcTemplate.update("INSERT INTO phonebook (record_id,phone_num,name,is_company,created_at) VALUES (?, ?, ?, ?, ?)",
-                pr.getRecordId(),pr.getPhoneNum(),pr.getName(),pr.isCompany(),pr.getCreatedAt()
+        jdbcTemplate.update("INSERT INTO phonebook (phone_num,name,is_company,created_at) VALUES (?, ?, ?, ?)",
+                pr.getPhoneNum(),pr.getName(),pr.isCompany(),pr.getCreatedAt()
                 );
     }
 
@@ -33,6 +33,38 @@ public class PhonebookRecordDaoImpl implements PhonebookRecordDao {
                 "SELECT * FROM phonebook WHERE phone_num = ? LIMIT 1",
                 new PhonebookRowMapper(), phoneNum);
         return results.stream().findFirst();
+    }
+
+    @Override
+    public List<PhonebookRecord> findAllByNum(String phoneNum) {
+        List<PhonebookRecord> results = jdbcTemplate.query(
+                "SELECT * FROM phonebook WHERE phone_num = ?",
+                new PhonebookRowMapper(), phoneNum);
+
+        results = results.stream().toList();
+        return results;
+    }
+
+    @Override
+    public List<PhonebookRecord> findLatestNum(String phoneNum) {
+        List<PhonebookRecord> results = jdbcTemplate.query(
+                "SELECT * FROM phonebook WHERE phone_num = ? ORDER BY created_at DESC LIMIT 1",
+                new PhonebookRowMapper(), phoneNum);
+
+        results = results.stream().toList();
+        return results;
+    }
+
+    /*
+        Refactor later
+        deleteOld
+     */
+    @Override
+    public int deleteOld(String phoneNum) {
+        int deletedRows = jdbcTemplate.update(
+                "DELETE FROM phonebook WHERE phone_num = ? AND record_id NOT IN(SELECT record_id FROM phonebook WHERE phone_num = ? ORDER BY created_at DESC LIMIT 1)",
+               phoneNum,phoneNum);
+        return deletedRows;
     }
 
     public static class PhonebookRowMapper implements RowMapper<PhonebookRecord> {

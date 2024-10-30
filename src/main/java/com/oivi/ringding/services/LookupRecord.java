@@ -1,11 +1,20 @@
 package com.oivi.ringding.services;
 
-public record LookupRecord(String phoneNum, String identity, boolean isCompany) {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-    @Override
-    public String toString() {
-        return phoneNum + " --> " + identity + " | Company : " + isCompany;
-    }
+import java.sql.Timestamp;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class LookupRecord{
+
+    private String phoneNum;
+    private String identity;
+    private boolean isCompany;
+
 
 
 }

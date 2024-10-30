@@ -40,8 +40,8 @@ public class PhonebookRecordDaoImplTests {
 
         underTest.create(pr);
         verify(jdbcTemplate).update(
-                eq("INSERT INTO phonebook (record_id,phone_num,name,is_company,created_at) VALUES (?, ?, ?, ?, ?)"),
-                eq(1L), eq("92285833"), eq("Oliver Bråten"), eq(false), eq(timestamp)
+                eq("INSERT INTO phonebook (phone_num,name,is_company,created_at) VALUES (?, ?, ?, ?)"),
+                eq("92285833"), eq("Oliver Bråten"), eq(false), eq(timestamp)
         );
     }
 
