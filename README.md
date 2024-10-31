@@ -25,6 +25,7 @@
 
 ## TODO
 - Refactor and test PhonebookController
+  - Return a list of objects even when only one is to be expected, to avoid returning `null` at any point
 - Implement sensible restrictions
   - Rate limiting
   - Validate that input string is numeric AND follows the E. 164 international standard
