@@ -34,6 +34,12 @@ public class PhonebookRecord {
     private boolean isCompany;
     private Timestamp createdAt;
 
+    /*
+        If timestamp is not set then the record does not originate from db,
+        A timestamp is then generated when the DAO calls getCreatedAt to pass the column to db.
+
+        Should probably refactor this to be done somewhere else... not sure
+     */
     public Timestamp getCreatedAt() {
         if(createdAt == null){
             createdAt = Timestamp.valueOf(LocalDateTime.now().truncatedTo(ChronoUnit.MICROS));

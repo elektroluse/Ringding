@@ -42,7 +42,7 @@ public class LookupControllerEndpointTest {
                 MockMvcResultMatchers.jsonPath("$.identity").value("Oliver Bråten")
 
         ).andExpect(
-                MockMvcResultMatchers.jsonPath("$.isCompany").value(false)
+                MockMvcResultMatchers.jsonPath("$.company").value(false)
 
         );
     }
@@ -60,13 +60,13 @@ public class LookupControllerEndpointTest {
                 // Contains in any order is good enough for the number fields and makes the testcase less verbose
                 MockMvcResultMatchers.jsonPath("$[*].phoneNum").value(containsInAnyOrder("92285833","23291700","41353151","48841237"))
         ).andExpect(
-                MockMvcResultMatchers.jsonPath("$[0].isCompany").value(false)
+                MockMvcResultMatchers.jsonPath("$[0].company").value(false)
         ).andExpect(
-                MockMvcResultMatchers.jsonPath("$[1].isCompany").value(true)
+                MockMvcResultMatchers.jsonPath("$[1].company").value(true)
         ).andExpect(
-                MockMvcResultMatchers.jsonPath("$[2].isCompany").value(false)
+                MockMvcResultMatchers.jsonPath("$[2].company").value(false)
         ).andExpect(
-                MockMvcResultMatchers.jsonPath("$[3].isCompany").value(true)
+                MockMvcResultMatchers.jsonPath("$[3].company").value(true)
         ).andExpect(
                 MockMvcResultMatchers.jsonPath("$[0].identity").value("Oliver Bråten")
         ).andExpect(

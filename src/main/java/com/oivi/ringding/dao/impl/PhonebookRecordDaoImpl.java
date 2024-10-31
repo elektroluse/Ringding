@@ -15,7 +15,7 @@ import java.util.Optional;
 public class PhonebookRecordDaoImpl implements PhonebookRecordDao {
 
     private final JdbcTemplate jdbcTemplate;
-
+    private final PhonebookRowMapper rowMapper = new PhonebookRowMapper();
     public PhonebookRecordDaoImpl(final JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -31,7 +31,7 @@ public class PhonebookRecordDaoImpl implements PhonebookRecordDao {
     public Optional<PhonebookRecord> findByNum(String phoneNum) {
         List<PhonebookRecord> results = jdbcTemplate.query(
                 "SELECT * FROM phonebook WHERE phone_num = ? LIMIT 1",
-                new PhonebookRowMapper(), phoneNum);
+                rowMapper, phoneNum);
         return results.stream().findFirst();
     }
 
@@ -39,7 +39,7 @@ public class PhonebookRecordDaoImpl implements PhonebookRecordDao {
     public List<PhonebookRecord> findAllByNum(String phoneNum) {
         List<PhonebookRecord> results = jdbcTemplate.query(
                 "SELECT * FROM phonebook WHERE phone_num = ?",
-                new PhonebookRowMapper(), phoneNum);
+                rowMapper, phoneNum);
 
         results = results.stream().toList();
         return results;
@@ -49,7 +49,7 @@ public class PhonebookRecordDaoImpl implements PhonebookRecordDao {
     public List<PhonebookRecord> findLatestNum(String phoneNum) {
         List<PhonebookRecord> results = jdbcTemplate.query(
                 "SELECT * FROM phonebook WHERE phone_num = ? ORDER BY created_at DESC LIMIT 1",
-                new PhonebookRowMapper(), phoneNum);
+                rowMapper, phoneNum);
 
         results = results.stream().toList();
         return results;
@@ -65,6 +65,14 @@ public class PhonebookRecordDaoImpl implements PhonebookRecordDao {
                 "DELETE FROM phonebook WHERE phone_num = ? AND record_id NOT IN(SELECT record_id FROM phonebook WHERE phone_num = ? ORDER BY created_at DESC LIMIT 1)",
                phoneNum,phoneNum);
         return deletedRows;
+    }
+
+    @Override
+    public List<PhonebookRecord> allNumsWithName(String name){
+        List<PhonebookRecord> results = jdbcTemplate.query(
+                "SELECT * FROM phonebook WHERE name = ?",
+                rowMapper, name);
+        return results;
     }
 
     public static class PhonebookRowMapper implements RowMapper<PhonebookRecord> {

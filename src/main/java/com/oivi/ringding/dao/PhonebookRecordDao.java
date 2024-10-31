@@ -16,4 +16,6 @@ public interface PhonebookRecordDao {
     List<PhonebookRecord> findLatestNum(String phoneNum);
 
     int deleteOld(String phoneNum);
+
+    List<PhonebookRecord> allNumsWithName(String name);
 }

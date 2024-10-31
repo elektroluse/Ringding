@@ -6,6 +6,7 @@ import com.oivi.ringding.domain.PhonebookRecord;
 import com.oivi.ringding.mappers.Mapper;
 import com.oivi.ringding.mappers.impl.LookupRecordMapperImpl;
 import com.oivi.ringding.services.LookupRecord;
+import com.oivi.ringding.services.PhonebookService;
 import com.oivi.ringding.services.impl.Ringding;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -21,20 +22,18 @@ public class PhonebookController {
 
     private Ringding ringding;
     private PhonebookRecordDaoImpl phonebookRecordDao;
-    private LookupRecordMapperImpl mapper;
-    public PhonebookController(Ringding ringding, PhonebookRecordDaoImpl phonebookRecordDao,LookupRecordMapperImpl mapper) {
+    private PhonebookService phonebookService;
+    public PhonebookController(Ringding ringding, PhonebookRecordDaoImpl phonebookRecordDao, PhonebookService phonebookService) {
         this.ringding = ringding;
         this.phonebookRecordDao = phonebookRecordDao;
-        this.mapper = mapper;
+        this.phonebookService = phonebookService;
     }
 
-    @PostMapping(path = "/api/db/nCreate")
+    @PostMapping(path = "/api/db/lookup/save")
     public ResponseEntity<PhonebookRecord> lookupAndCreate(@RequestBody String phoneNum){
 
-        PhonebookRecord result = null;
-        LookupRecord temp = ringding.lookup(phoneNum);
-        result = mapper.mapTo(temp);
-        phonebookRecordDao.create(result);
+        LookupRecord lr = ringding.lookup(phoneNum);
+        PhonebookRecord result = phonebookService.saveToPhonebook(lr);
         return new ResponseEntity<>(result,HttpStatus.CREATED);
     }
 
