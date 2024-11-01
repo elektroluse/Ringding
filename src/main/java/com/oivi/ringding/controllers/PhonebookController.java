@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,8 +40,10 @@ public class PhonebookController {
 
     @GetMapping(path = "/api/db/{number}")
     public ResponseEntity<Optional<PhonebookRecord>> readOne(@PathVariable String number){
-        Optional<PhonebookRecord> result = Optional.empty();
-        result = phonebookRecordDao.findByNum(number);
+        Optional<PhonebookRecord> result = phonebookRecordDao.findByNum(number);
+        //List<PhonebookRecord> result = new ArrayList<>();
+        //readFromDb.ifPresent(result::add);
+        //List<PhonebookRecord> result = List.of(readFromDb.get());
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
@@ -51,8 +54,8 @@ public class PhonebookController {
 
     }
     @GetMapping(path = "/api/db/latest/{number}")
-    public ResponseEntity<List<PhonebookRecord>> readLatest(@PathVariable String number){
-        List<PhonebookRecord> result = phonebookRecordDao.findLatestNum(number);
+    public ResponseEntity<Optional<PhonebookRecord>> readLatest(@PathVariable String number){
+        Optional<PhonebookRecord> result = phonebookRecordDao.findLatestNum(number);
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
 

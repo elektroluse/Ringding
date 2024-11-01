@@ -13,7 +13,7 @@ public interface PhonebookRecordDao {
 
     List<PhonebookRecord> findAllByNum(String phoneNum);
 
-    List<PhonebookRecord> findLatestNum(String phoneNum);
+    Optional<PhonebookRecord> findLatestNum(String phoneNum);
 
     int deleteOld(String phoneNum);
 

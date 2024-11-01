@@ -46,13 +46,11 @@ public class PhonebookRecordDaoImpl implements PhonebookRecordDao {
     }
 
     @Override
-    public List<PhonebookRecord> findLatestNum(String phoneNum) {
+    public Optional<PhonebookRecord> findLatestNum(String phoneNum) {
         List<PhonebookRecord> results = jdbcTemplate.query(
                 "SELECT * FROM phonebook WHERE phone_num = ? ORDER BY created_at DESC LIMIT 1",
                 rowMapper, phoneNum);
-
-        results = results.stream().toList();
-        return results;
+        return results.stream().findFirst();
     }
 
     /*
