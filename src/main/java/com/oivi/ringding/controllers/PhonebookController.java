@@ -31,10 +31,10 @@ public class PhonebookController {
     }
 
     @PostMapping(path = "/api/db/lookup/save")
-    public ResponseEntity<PhonebookRecord> lookupAndCreate(@RequestBody String phoneNum){
+    public ResponseEntity<Optional<PhonebookRecord>> lookupAndCreate(@RequestBody String phoneNum){
 
         LookupRecord lr = ringding.lookup(phoneNum);
-        PhonebookRecord result = phonebookService.saveToPhonebook(lr);
+        Optional<PhonebookRecord> result = phonebookService.saveToPhonebook(lr);
         return new ResponseEntity<>(result,HttpStatus.CREATED);
     }
 
@@ -63,6 +63,12 @@ public class PhonebookController {
     public ResponseEntity<Integer> deleteOld(@PathVariable String number){
         Integer result = phonebookRecordDao.deleteOld(number);
         return new ResponseEntity<>(result,HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/api/db/insert")
+    public ResponseEntity<Integer> insertPR(@RequestBody PhonebookRecord phonebookRecord){
+        int result = phonebookService.insertToPhonebook(phonebookRecord);
+        return new ResponseEntity<>(result,HttpStatus.CREATED);
     }
 
 }

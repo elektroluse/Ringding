@@ -54,4 +54,8 @@ public class PRDaoImplIntegrationTest {
         assertThat(result.get()).isEqualTo(pr);
 
     }
+    @Test
+    public void testReadAll(){
+
+    }
 }

@@ -21,8 +21,8 @@ public class PhonebookRecordDaoImpl implements PhonebookRecordDao {
     }
 
     @Override
-    public void create(PhonebookRecord pr) {
-        jdbcTemplate.update("INSERT INTO phonebook (phone_num,name,is_company,created_at) VALUES (?, ?, ?, ?)",
+    public int create(PhonebookRecord pr) {
+        return jdbcTemplate.update("INSERT INTO phonebook (phone_num,name,is_company,created_at) VALUES (?, ?, ?, ?)",
                 pr.getPhoneNum(),pr.getName(),pr.isCompany(),pr.getCreatedAt()
                 );
     }
