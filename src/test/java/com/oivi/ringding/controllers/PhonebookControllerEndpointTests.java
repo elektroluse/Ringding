@@ -65,7 +65,7 @@ public class PhonebookControllerEndpointTests {
 
      */
     @Test
-    public void insertPRReadAllReadLatestIntegrationTest() throws Exception {
+    public void insertPRReadAllReadLatestDeleteIntegrationTest() throws Exception {
 
         ObjectMapper mapper = new ObjectMapper(); // Jackson mapper
         PhonebookRecord pr1 = PhonebookRecord.builder()
@@ -169,7 +169,26 @@ public class PhonebookControllerEndpointTests {
                 MockMvcResultMatchers.jsonPath("$.recordId").value(4)
         );
 
+        mockMvc.perform(
+                MockMvcRequestBuilders.delete("/api/db/delete/old/92285833")
+        ).andExpect(
+                MockMvcResultMatchers.status().isOk()
+        ).andExpect(
+                MockMvcResultMatchers.jsonPath("$").value(2)
+        );
+
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/api/db/all/92285833")
+        ).andExpect(
+                MockMvcResultMatchers.status().isOk()
+        ).andExpect(
+                MockMvcResultMatchers.jsonPath("$[0].recordId").value(4)
+
+        );
+
     }
+
 
 
 }
