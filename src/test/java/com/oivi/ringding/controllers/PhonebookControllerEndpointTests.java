@@ -62,7 +62,7 @@ public class PhonebookControllerEndpointTests {
             /api/db/insert
             /api/db/all/{number}
             /api/db/latest/{number}
-
+            /api/db/delete/old/{number}
      */
     @Test
     public void insertPRReadAllReadLatestDeleteIntegrationTest() throws Exception {

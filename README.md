@@ -9,14 +9,15 @@
 ## Endpoints
 - [x] `GET : api/lookup/{number}`
 - [x] `POST : api/lookup/list`
-- [ ] `POST : api/lookup/upload`
-  - Implemented and tested but needs refactor
+- [x] `POST : api/lookup/upload`
+  
 
 
 - [x] `POST : /api/db/insert`
 - [x] `GET : /api/db/all/{number}`
 - [x] `GET : /api/db/latest/{number}`
-- `MANY MORE implemented, list when decided`
+- [x] `DELETE : /api/db/delete/old/{number}`
+
 
 ## How to run
 - `git clone https://github.com/elektroluse/Ringding.git`
