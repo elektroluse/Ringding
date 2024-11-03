@@ -36,6 +36,15 @@ public class PhonebookRecordDaoImpl implements PhonebookRecordDao {
     }
 
     @Override
+    public List<PhonebookRecord> readAll(){
+        List<PhonebookRecord> results = jdbcTemplate.query(
+                "SELECT * FROM phonebook", rowMapper);
+
+        results = results.stream().toList();
+        return results;
+    }
+
+    @Override
     public List<PhonebookRecord> findAllByNum(String phoneNum) {
         List<PhonebookRecord> results = jdbcTemplate.query(
                 "SELECT * FROM phonebook WHERE phone_num = ?",

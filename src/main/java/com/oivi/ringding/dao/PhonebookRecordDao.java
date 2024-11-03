@@ -18,4 +18,6 @@ public interface PhonebookRecordDao {
     int deleteOld(String phoneNum);
 
     List<PhonebookRecord> allNumsWithName(String name);
+    List<PhonebookRecord> readAll();
+
 }

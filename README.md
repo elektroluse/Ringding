@@ -14,6 +14,7 @@
 
 
 - [x] `POST : /api/db/insert`
+- [x] `GET : /api/db/all`
 - [x] `GET : /api/db/all/{number}`
 - [x] `GET : /api/db/latest/{number}`
 - [x] `DELETE : /api/db/delete/old/{number}`

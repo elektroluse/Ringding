@@ -63,6 +63,7 @@ public class PhonebookControllerEndpointTests {
             /api/db/all/{number}
             /api/db/latest/{number}
             /api/db/delete/old/{number}
+            /api/db/all
      */
     @Test
     public void insertPRReadAllReadLatestDeleteIntegrationTest() throws Exception {
@@ -184,6 +185,16 @@ public class PhonebookControllerEndpointTests {
                 MockMvcResultMatchers.status().isOk()
         ).andExpect(
                 MockMvcResultMatchers.jsonPath("$[0].recordId").value(4)
+
+        );
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/api/db/all")
+        ).andExpect(
+                MockMvcResultMatchers.status().isOk()
+        ).andExpect(
+                MockMvcResultMatchers.jsonPath("$",hasSize(3))
+
 
         );
 

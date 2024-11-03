@@ -46,6 +46,12 @@ public class PhonebookController {
         //List<PhonebookRecord> result = List.of(readFromDb.get());
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
+    @GetMapping(path = "/api/db/all")
+    public ResponseEntity<List<PhonebookRecord>> readAll(){
+        List<PhonebookRecord> result = phonebookRecordDao.readAll();
+        return new ResponseEntity<>(result,HttpStatus.OK);
+
+    }
 
     @GetMapping(path = "/api/db/all/{number}")
     public ResponseEntity<List<PhonebookRecord>> readAll(@PathVariable String number){
