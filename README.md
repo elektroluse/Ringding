@@ -12,8 +12,10 @@
 - [ ] `POST : api/lookup/upload`
   - Implemented and tested but needs refactor
 
-- [ ] `GET : api/db/{number}`
-- [ ] `GET : api/db/{companyname}`
+
+- [x] `POST : /api/db/insert`
+- [x] `GET : /api/db/all/{number}`
+- [x] `GET : /api/db/latest/{number}`
 - `MANY MORE implemented, list when decided`
 
 ## How to run
