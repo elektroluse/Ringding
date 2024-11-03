@@ -56,6 +56,14 @@ public class PhonebookControllerEndpointTests {
         );
     }
 
+
+    /*
+        Tests:
+            /api/db/insert
+            /api/db/all/{number}
+            /api/db/latest/{number}
+
+     */
     @Test
     public void insertPRReadAllReadLatestIntegrationTest() throws Exception {
 
@@ -64,24 +72,28 @@ public class PhonebookControllerEndpointTests {
                 .phoneNum("92285833")
                 .name("Oliver Bråten")
                 .isCompany(false)
+                .createdAt(Timestamp.valueOf("2024-11-01 22:56:06.553695"))
                 .build();
 
         PhonebookRecord pr2 = PhonebookRecord.builder()
                 .phoneNum("92285833")
                 .name("Oliver Bråten")
                 .isCompany(false)
+                .createdAt(Timestamp.valueOf("2024-11-01 22:56:06.573695"))
                 .build();
 
         PhonebookRecord pr3 = PhonebookRecord.builder()
                 .phoneNum("340593459")
                 .name("Some name")
                 .isCompany(true)
+                .createdAt(Timestamp.valueOf("2024-11-07 22:56:06.593695"))
                 .build();
 
         PhonebookRecord pr4 = PhonebookRecord.builder()
                 .phoneNum("92285833")
                 .name("Oliver Bråten")
                 .isCompany(false)
+                .createdAt(Timestamp.valueOf("2024-11-03 22:56:06.553695"))
                 .build();
 
         mockMvc.perform(
@@ -149,7 +161,7 @@ public class PhonebookControllerEndpointTests {
                 MockMvcResultMatchers.status().isCreated()
         );
 
-      /*  mockMvc.perform(
+        mockMvc.perform(
                 MockMvcRequestBuilders.get("/api/db/latest/92285833")
         ).andExpect(
                 MockMvcResultMatchers.status().isOk()
@@ -157,7 +169,6 @@ public class PhonebookControllerEndpointTests {
                 MockMvcResultMatchers.jsonPath("$.recordId").value(4)
         );
 
-       */
     }
 
 
