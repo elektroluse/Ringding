@@ -22,11 +22,9 @@ import java.util.Optional;
 public class PhonebookController {
 
     private Ringding ringding;
-    private PhonebookRecordDaoImpl phonebookRecordDao;
     private PhonebookService phonebookService;
-    public PhonebookController(Ringding ringding, PhonebookRecordDaoImpl phonebookRecordDao, PhonebookService phonebookService) {
+    public PhonebookController(Ringding ringding, PhonebookService phonebookService) {
         this.ringding = ringding;
-        this.phonebookRecordDao = phonebookRecordDao;
         this.phonebookService = phonebookService;
     }
 
@@ -40,31 +38,32 @@ public class PhonebookController {
 
     @GetMapping(path = "/api/db/{number}")
     public ResponseEntity<Optional<PhonebookRecord>> readOne(@PathVariable String number){
-        Optional<PhonebookRecord> result = phonebookRecordDao.findByNum(number);
+        Optional<PhonebookRecord> result = phonebookService.readOne(number);
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
     @GetMapping(path = "/api/db/all")
     public ResponseEntity<List<PhonebookRecord>> readAll(){
-        List<PhonebookRecord> result = phonebookRecordDao.readAll();
+
+        List<PhonebookRecord> result = phonebookService.readAll();
         return new ResponseEntity<>(result,HttpStatus.OK);
 
     }
 
     @GetMapping(path = "/api/db/all/{number}")
     public ResponseEntity<List<PhonebookRecord>> readAll(@PathVariable String number){
-        List<PhonebookRecord> result = phonebookRecordDao.findAllByNum(number);
+        List<PhonebookRecord> result = phonebookService.readAll(number);
         return new ResponseEntity<>(result,HttpStatus.OK);
 
     }
     @GetMapping(path = "/api/db/latest/{number}")
     public ResponseEntity<Optional<PhonebookRecord>> readLatest(@PathVariable String number){
-        Optional<PhonebookRecord> result = phonebookRecordDao.findLatestNum(number);
+        Optional<PhonebookRecord> result = phonebookService.findLatestNum(number);
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/api/db/delete/old/{number}")
     public ResponseEntity<Integer> deleteOld(@PathVariable String number){
-        Integer result = phonebookRecordDao.deleteOld(number);
+        Integer result = phonebookService.deleteOld(number);
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
 

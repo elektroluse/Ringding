@@ -7,6 +7,7 @@ import com.oivi.ringding.services.LookupRecord;
 import com.oivi.ringding.services.PhonebookService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -34,6 +35,30 @@ public class PhonebookServiceImpl implements PhonebookService {
          return pbDao.create(pr);
     }
 
+    @Override
+    public Optional<PhonebookRecord> readOne(String number) {
+        return pbDao.findByNum(number);
+    }
+
+    @Override
+    public List<PhonebookRecord> readAll() {
+        return pbDao.readAll();
+    }
+
+    @Override
+    public List<PhonebookRecord> readAll(String number) {
+        return pbDao.findAllByNum(number);
+    }
+
+    @Override
+    public Optional<PhonebookRecord> findLatestNum(String number) {
+        return pbDao.findLatestNum(number);
+    }
+
+    @Override
+    public Integer deleteOld(String number) {
+        return pbDao.deleteOld(number);
+    }
 
 
 }
