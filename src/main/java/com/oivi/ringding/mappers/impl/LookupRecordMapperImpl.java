@@ -1,7 +1,6 @@
 package com.oivi.ringding.mappers.impl;
 
 import com.oivi.ringding.domain.PhonebookRecord;
-import com.oivi.ringding.domain.dto.PhonebookRecordDto;
 import com.oivi.ringding.mappers.Mapper;
 import com.oivi.ringding.services.LookupRecord;
 import org.modelmapper.ModelMapper;
@@ -20,12 +19,7 @@ public class LookupRecordMapperImpl implements Mapper<LookupRecord, PhonebookRec
 
 
     }
-
-    public void setupMappings(){
-
-    }
-
-
+    
     @Override
     public PhonebookRecord mapTo(LookupRecord lookupRecord) {
         return modelMapper.map(lookupRecord, PhonebookRecord.class);
