@@ -41,9 +41,6 @@ public class PhonebookController {
     @GetMapping(path = "/api/db/{number}")
     public ResponseEntity<Optional<PhonebookRecord>> readOne(@PathVariable String number){
         Optional<PhonebookRecord> result = phonebookRecordDao.findByNum(number);
-        //List<PhonebookRecord> result = new ArrayList<>();
-        //readFromDb.ifPresent(result::add);
-        //List<PhonebookRecord> result = List.of(readFromDb.get());
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
     @GetMapping(path = "/api/db/all")
