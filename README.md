@@ -51,14 +51,14 @@
 ## Endpoints
 - [x] `GET : api/lookup/{number}`
   - Single lookup of given number
-  - Response format 1(add link)
+  - [Response format 1](#single-lookuprecord-json)
 - [x] `POST : api/lookup/list`
   - Lookup of all the numbers in the request body
   - Request body should be a json array of numbers e.g `[12345678,24235555, ...]`
-  - Response format 2 (add link)
+  - [Response format 2](#json-array-of-lookuprecord)
 - [x] `POST : api/lookup/upload`
   - Expects a 'text/plain' `.txt` file, one phone number per line
-  - Response format 2 (add link)
+  - [Response format 2](#json-array-of-lookuprecord)
 -[x] `POST: /api/db/lookup/save`
   - Does a single lookup and saves the result to the db
 - [x] `POST : /api/db/insert`
