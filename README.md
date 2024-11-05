@@ -19,7 +19,7 @@
 - Not because the scraper has unexpected behaviour but simply because the expected data changed.
 - We would want our test to fail if the web service logic changed so that the scraper implementation no longer managed to pick out the data we are interested in.
 - I have fixed the test case for now, but this can happen again with any of the numbers used in testing. So I cannot guarantee that the tests will pass when YOU run them but the assert error output will make it easy to rectify yourself.
-- If it becomes a frequent issue I will change the tests to use numbers that is more likely to have a persistent identity.
+- If it becomes a frequent issue I will change the tests to use numbers that is more likely to have a persistent connection with an  identity.
 
 ## Endpoints
 - [x] `GET : /api/lookup/{number}`
