@@ -32,6 +32,7 @@
 - [x] `POST : api/lookup/upload`
   - Expects a 'text/plain' `.txt` file, one phone number per line
   - [Response format 2](#2-json-array-of-lookuprecords)
+  
 -[x] `POST: /api/db/lookup/save`
   - Does a single lookup and saves the result to the db
   - Expects a number in the request body
