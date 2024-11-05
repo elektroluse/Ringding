@@ -123,7 +123,6 @@
    - Make API calls with Postman or write a program that sends HTTP requests to the endpoints available 
 
 ## TODO
-  - Add PhonebookRecord json representation to readme
   - Refactor DTOs properly (LookupRecord should probably not be in service package)
     - Ringding and the scrapers should probably also be moved to a separate directory
     - "LookupService" with a ringding dependency would be cleaner
@@ -132,7 +131,6 @@
   - Implement sensible restrictions
     - Rate limiting
     - Validate that input string is numeric AND follows the E. 164 international standard (? maybe)
-  - tbd
   - (?) DB lookup before external lookup
   - Build and run instructions
   - Usage examples
