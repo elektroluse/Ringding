@@ -28,7 +28,7 @@ public class ScraperLookupTest {
         Scraper s = new GulesiderScraper();
 
         LookupRecord actual = s.lookup("41412582");
-        LookupRecord expected = new LookupRecord("41412582","TELENOR NORGE AS", true);
+        LookupRecord expected = new LookupRecord("41412582","Talkmore", true);
         assertThat(actual).isEqualTo(expected);
     }
 

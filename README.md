@@ -7,6 +7,19 @@
 - No db interaction in endpoints exposed by LookupController
 - PhonebookController has all endpoints that interact with a db
 
+
+### Notes about integration testing
+- Any integration test that tests for a specific identity bound to a number is liable to fail, as a relationship between a number and an identity is not permanent.
+- As an example sometime between the implementation of `ScraperLookupTest.testGulesiderScraperCompanyLookup` and the date I am writing this (5 Nov 2024) the identity connected to the number changed:
+```
+  ERROR   ScraperLookupTest.testGulesiderScraperCompanyLookup:32
+  expected: LookupRecord(phoneNum=41412582, identity=TELENOR NORGE AS, isCompany=true)
+  but was: LookupRecord(phoneNum=41412582, identity=Talkmore, isCompany=true)
+  ```
+- Not because the scraper has unexpected behaviour but simply because the expected data changed.
+- We would want our test to fail if the web service logic changed so that the scraper implementation no longer managed to pick out the data we are interested in.
+- I have fixed the test case for now, but this can happen again with any of the numbers used in testing. So I cannot guarantee that the tests will pass when YOU the reader runs them but the assert error output will make it easy to rectify yourself.
+- If it becomes a frequent issue I will change the tests to use numbers that is more likely to have a persistent identity.
 ## Response Formats
 
 ### 1) Single LookupRecord Json  
@@ -16,7 +29,8 @@
       "identity": "Jane Doe",
       "company": false
     }  
-   ``` 
+ ``` 
+
 ### 2) Json Array of LookupRecord
 ```json
     [
@@ -65,11 +79,15 @@
 ## How to run
 - `git clone https://github.com/elektroluse/Ringding.git`
 - `cd Ringding`
+- If you want to run the test cases `./mvnw clean verify`
+  - The test target uses an H2 in-memory db with postgres config, so no dependency on a real db instance  
 - `docker-compose up`
   - (!) If you have a local postgres service running on the same port as defined in `docker-compose.yml`
   - You will run into issues, change the port or pause the service
-- `./mvnw spring-boot:run`
-  - Make API calls with Postman or write a program that sends HTTP requests to the endpoints available 
+  - You can still run the application and use the endpoints in `LookupController` without a running db, but you have to uncomment `spring.sql.init.continue-on-error= true` in `application.properties`
+  
+-  `./mvnw spring-boot:run`
+   - Make API calls with Postman or write a program that sends HTTP requests to the endpoints available 
 
 ## TODO
   - Add PhonebookRecord json representation to readme
